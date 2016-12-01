@@ -5,6 +5,9 @@ var express = require('express'),
  posts = require('./mock/posts.json');
 
 //initializing some dependencies
+var postsLists = Object.keys(posts).map(function(value){
+    return posts[value]
+});
 var app = express();
 
 //this is use for serving style , js , content files
@@ -23,7 +26,7 @@ app.get('/blog/:title?', function(req, res){
     var title = req.params.title;
     if (title === undefined) {
         res.status(503);
-        res.send("under maintenance");
+        res.render('blog', {posts: postsLists});
     } else {
         var post = posts[title] || {};
         res.render('post', {post: post});
