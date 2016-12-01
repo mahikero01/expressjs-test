@@ -19,6 +19,8 @@ app.set('views', __dirname + '/templates');
 
 //these are used in routing and serving
 app.get('/', function(req, res){
+    var path = req.path;
+    res.locals.path = path;
     res.render('index');
 });
 
