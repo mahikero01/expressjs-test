@@ -35,6 +35,14 @@ app.get('/blog/:title?', function(req, res){
     }
 });
 
+//for WEB API
+app.get('/posts', function(req, res){
+    if (req.query.raw) {
+        res.json(posts);
+    } else {
+        res.json(postsLists);
+    };
+});
 
 app.listen(3000, function(){
     console.log("FrontEnd Server running in port 3000");
