@@ -17,9 +17,10 @@ app.get('/blog/:title?', function(req, res){
     if (title === undefined) {
         res.status(503);
         res.send("under maintenance");
-    };
-    var post = posts[title];
-    res.send(post);
+    } else {
+        var post = posts[title] || {};
+        res.render('post', {post: post});
+    }
 });
 
 app.listen(3000, function(){
